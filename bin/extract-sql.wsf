@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package>
+  <job>
+    <!-- FileReader -->
+    <script language="JavaScript" src="file-reader/file-reader.js"></script>
+
+    <!-- SqlFromMarkdown -->
+    <script language="JavaScript" src="sql-from-markdown/sql-from-markdown.js"></script>
+
+    <!-- main -->
+    <script language="JavaScript" src="extract-sql.js"></script>
+  </job>
+</package>
