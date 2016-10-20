@@ -2,7 +2,8 @@
 <package>
   <job>
     <!-- FileManager -->
-    <script language="JavaScript" src="file-reader/file-manager.js"></script>
+    <script language="JavaScript" src="file/file-reader.js"></script>
+    <script language="JavaScript" src="file/file-writer.js"></script>
 
     <!-- SqlFromMarkdown -->
     <script language="JavaScript" src="sql-from-markdown/sql-from-markdown.js"></script>
