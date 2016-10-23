@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <package>
   <job>
-    <!-- FileManager -->
-    <script language="JavaScript" src="file/file-reader.js"></script>
-    <script language="JavaScript" src="file/file-writer.js"></script>
+    <!-- FileObject -->
+    <script language="JavaScript" src="file-object/file-object.js"></script>
+    <script language="JavaScript" src="file-object/create-objects.js"></script>
 
-    <!-- SqlFromMarkdown -->
+    <!-- SqlObject -->
     <script language="JavaScript" src="sql-object/sql-object.js"></script>
     <script language="JavaScript" src="sql-object/extract-from-markdown.js"></script>
 
