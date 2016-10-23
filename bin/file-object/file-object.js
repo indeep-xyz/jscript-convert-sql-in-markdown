@@ -74,3 +74,29 @@ FileObject.prototype.read = function() {
   this.text = temp;
   return this.text;
 };
+
+/**
+ * Write a text file.
+ *
+ * @public
+ * @method
+ * @param {string} path - A path of file
+ * @param {string} text - Text for writing
+ */
+FileObject.prototype.write = function(path, text) {
+  var stream;
+
+  try {
+    stream = this.getStream();
+    stream.Open();
+
+    // Write with break line
+    stream.WriteText(text, 1);
+
+    // Overwrite
+    stream.SaveToFile(path, 2);
+  }
+  finally {
+    this.closeStream(stream);
+  }
+};

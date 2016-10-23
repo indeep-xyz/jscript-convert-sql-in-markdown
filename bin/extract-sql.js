@@ -15,5 +15,7 @@ for (var i = 0; i < fileList.length; i++) {
 
   if (sqlObject.hasSql) {
     WScript.Echo(sqlObject.sql);
+
+    file.write(file.path + '.sql', sqlObject.sql);
   }
 }
