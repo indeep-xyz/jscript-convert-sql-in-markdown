@@ -23,6 +23,32 @@ FileObject.prototype.isFile = function() {
 };
 
 /**
+ * Get a stream object to read files.
+ *
+ * @return {ActiveXObject} The object of ADODB.Stream
+ */
+FileObject.prototype.getStream = function() {
+  var stream = new ActiveXObject("ADODB.Stream");
+  stream.Type = 2; // text
+  stream.Charset = 'UTF-8';
+
+  return stream;
+};
+
+/**
+ * Close a stream object.
+ *
+ * @param {ActiveXObject} stream - The object of ADODB.Stream
+ */
+FileObject.prototype.closeStream = function(stream) {
+  try {
+    stream.Close();
+  }
+  catch(e) {
+  }
+};
+
+/**
  * Read text from a file.
  *
  * @public
@@ -30,9 +56,21 @@ FileObject.prototype.isFile = function() {
  * @return {string} Text from a path in an instance
  */
 FileObject.prototype.read = function() {
-  var fso = new ActiveXObject('Scripting.FileSystemObject');
-  var tf = fso.OpenTextFile(this.path);
-  this.text = tf.readAll();
+  var temp = null;
+  var stream;
 
+  try {
+    stream = this.getStream();
+    stream.Open();
+    stream.LoadFromFile(this.path);
+
+    // Read all
+    temp = stream.ReadText(-1);
+  }
+  finally {
+    this.closeStream(stream);
+  }
+
+  this.text = temp;
   return this.text;
 };
