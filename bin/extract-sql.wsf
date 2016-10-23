@@ -6,7 +6,8 @@
     <script language="JavaScript" src="file/file-writer.js"></script>
 
     <!-- SqlFromMarkdown -->
-    <script language="JavaScript" src="sql-from-markdown/sql-from-markdown.js"></script>
+    <script language="JavaScript" src="sql-object/sql-object.js"></script>
+    <script language="JavaScript" src="sql-object/extract-from-markdown.js"></script>
 
     <!-- main -->
     <script language="JavaScript" src="extract-sql.js"></script>
