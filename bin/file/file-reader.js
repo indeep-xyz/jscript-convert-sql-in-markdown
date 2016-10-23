@@ -12,6 +12,9 @@ var FileReader = function(pathList){
 
   /**
    * Extract existent file paths from Array.
+   *
+   * @private
+   * @method
    * @param  {Array<string>} listSource - Array incluidng string for file paths
    * @return {Array<string>} Return files paths
    */
@@ -38,6 +41,7 @@ var FileReader = function(pathList){
 };
 
 /**
+ * @public
  * @static
  * @var {Array<string>} Array including path for files
  */
@@ -55,6 +59,8 @@ FileReader.defaultPathList = (function(){
 /**
  * Get a directory path of file list in an instance.
  *
+ * @public
+ * @method
  * @param  {number} index - The index of file list in an instance
  * @return {string} Return a directory path
  */
@@ -68,6 +74,7 @@ FileReader.prototype.getDirPath = function(index) {
 /**
  * Read text from a file.
  *
+ * @public
  * @method
  * @param  {number} index - The index of file list in an instance
  * @return {string} Text from a path in an instance
@@ -84,6 +91,7 @@ FileReader.prototype.readFile = function(index) {
 /**
  * Read text from files.
  *
+ * @public
  * @method
  * @return {Array<string>} Text from files at this.pathList all
  */
