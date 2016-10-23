@@ -7,7 +7,42 @@
  */
 var FileObject = function(path){
   this.path = path;
-  this.text = (this.isFile()) ? this.read(path) : null;
+  this.initializeForFile();
+};
+
+/**
+ * Initialize file fields.
+ *
+ * @public
+ * @method
+ */
+FileObject.prototype.initializeForFile = function() {
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // main - in FileObject.prototype.initializeForFile
+
+  /**
+   * Get the directory path of a file path.
+   *
+   * @private
+   * @method
+   * @return {string} A directory path
+   */
+  function getDirPath(filePath) {
+    var fso = new ActiveXObject("Scripting.FileSystemObject");
+    return fso.GetParentFolderName(filePath);
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // main - in FileObject.prototype.initializeForFile
+
+  if (this.isFile()) {
+    this.dirPath = getDirPath(this.path);
+    this.text = this.read(this.path);
+  }
+  else {
+    this.dirPath = this.path;
+    this.text = null;
+  }
 };
 
 /**
