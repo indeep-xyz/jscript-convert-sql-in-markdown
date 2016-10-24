@@ -62,7 +62,7 @@ FileObject.prototype.isFile = function() {
  *
  * @return {ActiveXObject} The object of ADODB.Stream
  */
-FileObject.prototype.getStream = function() {
+FileObject.getStream = function() {
   var stream = new ActiveXObject("ADODB.Stream");
   stream.Type = 2; // text
   stream.Charset = 'UTF-8';
@@ -75,7 +75,7 @@ FileObject.prototype.getStream = function() {
  *
  * @param {ActiveXObject} stream - The object of ADODB.Stream
  */
-FileObject.prototype.closeStream = function(stream) {
+FileObject.closeStream = function(stream) {
   try {
     stream.Close();
   }
@@ -87,27 +87,68 @@ FileObject.prototype.closeStream = function(stream) {
  * Read text from a file.
  *
  * @public
+ * @static
  * @method
  * @return {string} Text from a path in an instance
  */
-FileObject.prototype.read = function() {
+FileObject.read = function(path) {
   var temp = null;
   var stream;
 
   try {
-    stream = this.getStream();
+    stream = FileObject.getStream();
     stream.Open();
-    stream.LoadFromFile(this.path);
+    stream.LoadFromFile(path);
 
     // Read all
     temp = stream.ReadText(-1);
   }
   finally {
-    this.closeStream(stream);
+    FileObject.closeStream(stream);
   }
+
+  return temp;
+};
+
+/**
+ * Read text from a file.
+ *
+ * @public
+ * @method
+ * @return {string} Text from a path in an instance
+ */
+FileObject.prototype.read = function() {
+  var temp = FileObject.read(this.path);
 
   this.text = temp;
   return this.text;
+};
+
+/**
+ * Write a text file.
+ *
+ * @public
+ * @static
+ * @method
+ * @param {string} path - A path of file
+ * @param {string} text - Text for writing
+ */
+FileObject.write = function(path, text) {
+  var stream;
+
+  try {
+    stream = FileObject.getStream();
+    stream.Open();
+
+    // Write with break line
+    stream.WriteText(text, 1);
+
+    // Overwrite
+    stream.SaveToFile(path, 2);
+  }
+  finally {
+    FileObject.closeStream(stream);
+  }
 };
 
 /**
@@ -119,19 +160,5 @@ FileObject.prototype.read = function() {
  * @param {string} text - Text for writing
  */
 FileObject.prototype.write = function(path, text) {
-  var stream;
-
-  try {
-    stream = this.getStream();
-    stream.Open();
-
-    // Write with break line
-    stream.WriteText(text, 1);
-
-    // Overwrite
-    stream.SaveToFile(path, 2);
-  }
-  finally {
-    this.closeStream(stream);
-  }
+  FileObject.write(path, text);
 };
