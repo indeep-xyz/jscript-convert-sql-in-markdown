@@ -49,6 +49,7 @@ FileObject.prototype.initializeForFile = function() {
  * Check whether the path of an instance is for file or not.
  *
  * @public
+ * @static
  * @method
  * @return {Boolean} Return true when the path is for file
  */
@@ -60,6 +61,9 @@ FileObject.prototype.isFile = function() {
 /**
  * Get a stream object to read files.
  *
+ * @public
+ * @static
+ * @method
  * @return {ActiveXObject} The object of ADODB.Stream
  */
 FileObject.getStream = function() {
@@ -73,6 +77,9 @@ FileObject.getStream = function() {
 /**
  * Close a stream object.
  *
+ * @public
+ * @static
+ * @method
  * @param {ActiveXObject} stream - The object of ADODB.Stream
  */
 FileObject.closeStream = function(stream) {
