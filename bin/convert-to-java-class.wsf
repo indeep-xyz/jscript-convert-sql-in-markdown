@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package>
+  <job>
+    <!-- FileObject -->
+    <script language="JavaScript" src="file-object/file-object.js"></script>
+    <script language="JavaScript" src="file-object/create-objects.js"></script>
+
+    <!-- SqlObject -->
+    <script language="JavaScript" src="sql-object/sql-object.js"></script>
+    <script language="JavaScript" src="sql-object/extract-from-markdown.js"></script>
+    <script language="JavaScript" src="sql-object/parse-sql.js"></script>
+
+    <!-- SqlToJava -->
+    <script language="JavaScript" src="sql-to-java/sql-to-java.js"></script>
+
+    <!-- main -->
+    <script language="JavaScript" src="extract-sql.js"></script>
+  </job>
+</package>
